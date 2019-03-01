@@ -3,7 +3,7 @@ var Letter = function(value) {
     this.placeHolder = "_";
     this.guessed = false;
     this.hasBeenGuessed = function() {
-        if (guessed) {
+        if (this.guessed) {
             return this.value;
         } else {
             return this.placeHolder;
@@ -11,7 +11,7 @@ var Letter = function(value) {
     }
     this.checkLetter = function(guess) {
         if (guess === this.value) {
-            this.gussed = true;
+            this.guessed = true;
         }
     }
 }
