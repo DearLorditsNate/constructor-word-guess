@@ -1,5 +1,7 @@
 var Word = require("./Word");
 
+var inquirer = require("inquirer");
+
 var words = [
     "WORDONE",
     "WORDTWO",
