@@ -1,8 +1,6 @@
 var Letter = require("./Letter");
 
-var word = "test";
-
-// console.log(word.length);
+// var word = "test";
 
 var Word = function(word) {
     this.letters = [];
@@ -23,10 +21,12 @@ var Word = function(word) {
     }
 }
 
-var testWord = new Word(word);
+module.exports = Word;
+
+// var testWord = new Word(word);
 
 // console.log(testWord);
 
-console.log(testWord.makeString());
+// console.log(testWord.makeString());
 
-console.log(testWord.hasLetter("t"));
+// console.log(testWord.hasLetter("t"));
