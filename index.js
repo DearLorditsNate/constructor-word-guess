@@ -18,10 +18,16 @@ Global Varialbes
 
 // Word Array
 var words = [
-    "ONE",
-    "TWO",
-    "THREE"
-];
+    "DROID",
+    "HOTH",
+    "TAUNTAUN",
+    "PARSECS",
+    "CHEWBACCA",
+    "CARBONITE",
+    "DEATHSTAR",
+    "MIDICHLORIANS",
+    "NABOO",
+    "LIGHTSABER"];
 
 // Stores word object
 var word;
@@ -40,7 +46,7 @@ Function Declarations
 
 // Get random word
 function getRandomWord(arr) {
-    return arr[Math.floor(Math.random() * 3)];
+    return arr[Math.floor(Math.random() * 10)];
 }
 
 // Generate new random word object
