@@ -8,6 +8,8 @@ var Word = require("./Word");
 
 var inquirer = require("inquirer");
 
+var chalk = require("chalk");
+
 /*
 ===============================
 Global Varialbes
@@ -71,6 +73,9 @@ function promptLetterGuess() {
         }
         if (guessedWrong) {
             guessesRemaining--;
+            console.log(chalk.bold.red("\nINCORRECT!!!"));
+        } else {
+            console.log(chalk.bold.green("\nCORRECT!!!"));
         }
         string = word.makeString();
         console.log("\nGuesses remaining: " + guessesRemaining);
