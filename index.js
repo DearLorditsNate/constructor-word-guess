@@ -55,11 +55,15 @@ function promptLetterGuess() {
             name: "letter"
         }
     ]).then(answers => {
+        var guessedWrong = true;
         word.hasLetter(answers.letter.toUpperCase());
         for (var i = 0; i < word.letters.length; i++) {
-            if (!word.letters[i].checkLetter(answers.letter)) {
-                guessesRemaining--;
+            if (word.letters[i].checkLetter(answers.letter.toUpperCase())) {
+                guessedWrong = false;
             };
+        }
+        if (guessedWrong) {
+            guessesRemaining--;
         }
         string = word.makeString();
         console.log("\nGuesses remaining: " + guessesRemaining);

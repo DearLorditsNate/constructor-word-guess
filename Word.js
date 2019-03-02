@@ -15,6 +15,11 @@ var Word = function(word) {
     this.hasLetter = function(guess) {
         for (var i = 0; i < this.letters.length; i++) {
             this.letters[i].checkLetter(guess);
+            if (this.letters[i].checkLetter(guess)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
