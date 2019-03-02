@@ -57,8 +57,8 @@ function promptLetterGuess() {
     ]).then(answers => {
         word.hasLetter(answers.letter.toUpperCase());
         string = word.makeString();
-        console.log("Guesses remaining: " + guessesRemaining);
-        console.log(string);
+        console.log("\nGuesses remaining: " + guessesRemaining);
+        console.log("\n" + string + "\n\n");
         if (hasWon(string)) {
             console.log("\nGreat job! You won!\n");
             newRound();
@@ -112,8 +112,9 @@ function newRound() {
 // Initialize game
 function initialize() {
     guessesRemaining = 10;
+    console.log("\nGuesses remaining: " + guessesRemaining);
     newRandomWord();
-    console.log(word.makeString());
+    console.log("\n" + word.makeString() + "\n\n");
     promptLetterGuess();
 }
 
