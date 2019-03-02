@@ -16,13 +16,16 @@ Global Varialbes
 
 // Word Array
 var words = [
-    "WORDONE",
-    "WORDTWO",
-    "WORDTHREE"
+    "ONE",
+    "TWO",
+    "THREE"
 ];
 
 // Stores word object
 var word;
+
+// Stores string to print
+var string;
 
 /*
 ===============================
@@ -49,10 +52,39 @@ function promptLetterGuess() {
             name: "letter"
         }
     ]).then(answers => {
-        word.hasLetter(answers.letter);
-        console.log(word.makeString());
-        promptLetterGuess();
+        word.hasLetter(answers.letter.toUpperCase());
+        string = word.makeString();
+        console.log(string);
+        if (hasWon(string)) {
+            inquirer.prompt([
+                {
+                    type: "list",
+                    choices: ["Play Again", "I'm done"],
+                    message: "Do you want to play again?",
+                    name: "choice"
+                }
+            ]).then(answer => {
+                if (answer.choice === "Play Again") {
+                    initialize();
+                } else {
+                    console.log("Thanks for playing!");
+                }
+            });
+        } else {
+            promptLetterGuess();
+        }
     });
+}
+
+// Check for win conditions
+function hasWon(word) {
+    var guessed = true;
+    for (var i = 0; i < word.length; i++) {
+        if (word.charAt(i) === "_") {
+            guessed = false;
+        }
+    }
+    return guessed;
 }
 
 // Initialize game
