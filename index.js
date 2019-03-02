@@ -52,7 +52,14 @@ function promptLetterGuess() {
         {
             type: "input",
             message: "Guess a letter!",
-            name: "letter"
+            name: "letter",
+            validate: function(value) {
+                if (value.length > 1) {
+                    return "Please only enter one letter!";
+                } else {
+                    return true;
+                }
+            }
         }
     ]).then(answers => {
         var guessedWrong = true;
