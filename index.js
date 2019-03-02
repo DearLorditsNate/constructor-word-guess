@@ -27,6 +27,9 @@ var word;
 // Stores string to print
 var string;
 
+// Stores guesses remaining
+var guessesRemaining = 10;
+
 /*
 ===============================
 Function Declarations
@@ -54,22 +57,14 @@ function promptLetterGuess() {
     ]).then(answers => {
         word.hasLetter(answers.letter.toUpperCase());
         string = word.makeString();
+        console.log("Guesses remaining: " + guessesRemaining);
         console.log(string);
         if (hasWon(string)) {
-            inquirer.prompt([
-                {
-                    type: "list",
-                    choices: ["Play Again", "I'm done"],
-                    message: "Do you want to play again?",
-                    name: "choice"
-                }
-            ]).then(answer => {
-                if (answer.choice === "Play Again") {
-                    initialize();
-                } else {
-                    console.log("Thanks for playing!");
-                }
-            });
+            console.log("\nGreat job! You won!\n");
+            newRound();
+        } else if (hasLost()) {
+            console.log("\nSorry, you lost...\n");
+            newRound();
         } else {
             promptLetterGuess();
         }
@@ -87,8 +82,36 @@ function hasWon(word) {
     return guessed;
 }
 
+// Check for loss conditions
+function hasLost() {
+    if (guessesRemaining <= 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// New round
+function newRound() {
+    inquirer.prompt([
+        {
+            type: "list",
+            choices: ["Play again", "I'm done"],
+            message: "Do you want to play again?",
+            name: "choice"
+        }
+    ]).then(answer => {
+        if (answer.choice === "Play again") {
+            initialize();
+        } else {
+            console.log("\nThanks for playing!\n");
+        }
+    });
+}
+
 // Initialize game
 function initialize() {
+    guessesRemaining = 10;
     newRandomWord();
     console.log(word.makeString());
     promptLetterGuess();
