@@ -56,6 +56,11 @@ function promptLetterGuess() {
         }
     ]).then(answers => {
         word.hasLetter(answers.letter.toUpperCase());
+        for (var i = 0; i < word.letters.length; i++) {
+            if (!word.letters[i].checkLetter(answers.letter)) {
+                guessesRemaining--;
+            };
+        }
         string = word.makeString();
         console.log("\nGuesses remaining: " + guessesRemaining);
         console.log("\n" + string + "\n\n");
@@ -72,10 +77,10 @@ function promptLetterGuess() {
 }
 
 // Check for win conditions
-function hasWon(word) {
+function hasWon(string) {
     var guessed = true;
-    for (var i = 0; i < word.length; i++) {
-        if (word.charAt(i) === "_") {
+    for (var i = 0; i < string.length; i++) {
+        if (string.charAt(i) === "_") {
             guessed = false;
         }
     }

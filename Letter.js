@@ -12,6 +12,9 @@ var Letter = function(value) {
     this.checkLetter = function(guess) {
         if (guess === this.value) {
             this.guessed = true;
+            return true;
+        } else {
+            return false;
         }
     }
 }
