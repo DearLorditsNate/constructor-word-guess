@@ -91,11 +91,22 @@ function promptLetterGuess() {
             newRound();
         } else if (hasLost()) {
             console.log("\nSorry, you lost...\n");
+            displayWord();
             newRound();
         } else {
             promptLetterGuess();
         }
     });
+}
+
+// Shows full word on loss
+function displayWord() {
+    for (var i = 0; i < word.letters.length; i++) {
+        if (!word.letters[i].guessed) {
+            word.letters[i].guessed = true;
+        }
+    }
+    console.log(word.makeString() + "\n");
 }
 
 // Check for win conditions
